@@ -23,6 +23,7 @@ def main(dimension_lines):
     paper_needed = [calc_paper_needed(d) for d in dimensions]
     return sum(paper_needed)
 
+
 if __name__ == '__main__':
     with open('data/input02.txt') as f:
         lines = [line.strip() for line in f.readlines()]
