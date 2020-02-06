@@ -44,9 +44,9 @@ def sum_lit_lights(grid):
     return sum([sum(row) for row in grid])
 
 
-def calc_num_lit_lights(lines):
+def calc_num_lit_lights(lines, run_algo=run_instructions):
     instructions = parse_instructions(lines)
-    grid = run_instructions(instructions)
+    grid = run_algo(instructions)
     return sum_lit_lights(grid)
 
 
