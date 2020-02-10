@@ -1,4 +1,5 @@
 from collections import defaultdict
+from copy import copy
 
 
 def intize(param):
@@ -49,8 +50,47 @@ def process_instructions(instructions):
     return wires
 
 
+def get_relied_on(lhs):
+    items = lhs.split()
+    relied_on = []
+
+    for item in items:
+        if isinstance(intize(item.strip()), int) or item.strip() in (['AND', 'OR', 'NOT', 'RSHIFT', 'LSHIFT']):
+            pass
+        else:
+            relied_on.append(item.strip())
+
+    return relied_on
+
+
+def order_instructions(raw_instructions):
+    relies_on = defaultdict(set)
+    all_rhs = set()
+
+    for lhs, rhs in raw_instructions:
+        relier = rhs.strip()
+        all_rhs.add(relier)
+        relied_on = get_relied_on(lhs)
+        relies_on[relier].update(set(relied_on))
+
+    remaining_instructions = copy(raw_instructions)
+    ordered_instructions = []
+    while remaining_instructions:
+        for rhs in all_rhs:
+            if not relies_on[rhs]:
+                for ri in remaining_instructions:
+                    if ri[1].strip() == rhs:
+                        ordered_instructions.append(ri)
+                        remaining_instructions.remove(ri)
+                        for v in relies_on.values():
+                            v.discard(rhs)
+
+    return ordered_instructions
+
+
 def main(lines):
-    wires = process_instructions([line.split(' -> ') for line in lines])
+    instructions = order_instructions([line.split(' -> ') for line in lines])
+    wires = process_instructions([instructions])
     return wires
 
 

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from day07_1 import main
+from day07_1 import main, get_relied_on
 
 
 class TestDay07(TestCase):
@@ -26,3 +26,6 @@ class TestDay07(TestCase):
             'NOT y -> i',
         ]
         self.assertEqual(main(lines), answer)
+
+    def test_get_relied_on(self):
+        self.assertEqual(['x', 'y'], get_relied_on('x AND y'))
