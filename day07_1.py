@@ -90,7 +90,7 @@ def order_instructions(raw_instructions):
 
 def main(lines):
     instructions = order_instructions([line.split(' -> ') for line in lines])
-    wires = process_instructions([instructions])
+    wires = process_instructions(instructions)
     return wires
 
 
