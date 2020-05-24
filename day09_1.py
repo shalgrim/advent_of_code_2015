@@ -16,7 +16,7 @@ def get_routes(lines):
     return routes
 
 
-def get_shortest_path_dfs(routes, path, distance=0):
+def get_shortest_path_dfs(routes, path, distance=0, longest=False):
     remaining_cities = {k for k in routes if k not in path}
     if not remaining_cities:  # base case
         return path, distance
@@ -30,13 +30,14 @@ def get_shortest_path_dfs(routes, path, distance=0):
         these_paths.append(shortest_from_here_tuple)
 
     sorted_paths = sorted(these_paths, key=lambda x: x[1])
-    return sorted_paths[0]
+    if longest:
+        return sorted_paths[-1]
+    else:
+        return sorted_paths[0]
 
 
 def get_shortest_path(lines):
     routes = get_routes(lines)
-    shortest_path = math.inf
-
     shortest_path_tuples_by_origin = [
         get_shortest_path_dfs(routes, [start_city]) for start_city in routes
     ]
