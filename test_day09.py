@@ -11,4 +11,4 @@ class TestDay09(TestCase):
         ]
 
     def test_get_shortest_path(self):
-        self.assertEqual(get_shortest_path('./data/test09.txt'), 605)
+        self.assertEqual(get_shortest_path(self.lines), 605)
