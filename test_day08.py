@@ -14,7 +14,10 @@ class TestDay08(TestCase):
         self.assertEqual(get_string_length(r'"\x27"'), 1)
 
     def test_get_encoded_len(self):
-        self.assertTrue(False)
+        self.assertEqual(get_encoded_len(r'""'), 6)
+        self.assertEqual(get_encoded_len(r'"abc"'), 9)
+        self.assertEqual(get_encoded_len(r'"aaa\"aaa"'), 16)
+        self.assertEqual(get_encoded_len(r'"\x27"'), 11)
 
     def test_get_encoded_file_diff(self):
-        self.assertTrue(False)
+        self.assertEqual(get_encoded_file_diff('./data/test08.txt'), 19)
