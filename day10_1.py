@@ -24,8 +24,9 @@ def look_and_say(s):
 
 def main(s, num_applications=40):
     answer = s
-    for _ in range(40):
+    for i in range(num_applications):
         answer = look_and_say(answer)
+        print(f'{i=}, {len(answer)=}')
 
     return answer
 
