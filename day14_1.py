@@ -7,6 +7,7 @@ class Reindeer:
     fly_time: int
     rest_time: int
     flying: bool = True
+    score: int = 0
 
     def calc_distance(self, seconds) -> int:
         seconds_left = seconds
@@ -36,10 +37,13 @@ def parse_line(line: str):
     return [int(tokens[3]), int(tokens[6]), int(tokens[13])]
 
 
-if __name__ == '__main__':
-    with open('data/input14.txt') as f:
+def get_reindeer_from_file(filename):
+    with open(filename) as f:
         lines = f.readlines()
+    return [Reindeer(*parse_line(line)) for line in lines]
 
-    reindeer = [Reindeer(*parse_line(line)) for line in lines]
+
+if __name__ == '__main__':
+    reindeer = get_reindeer_from_file('data/input14.txt')
     distances = [r.calc_distance(2503) for r in reindeer]
     print(max(distances))
