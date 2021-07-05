@@ -8,6 +8,8 @@ class Reindeer:
     rest_time: int
     flying: bool = True
     score: int = 0
+    time_in_state: int = 0
+    distance: int = 0
 
     def calc_distance(self, seconds) -> int:
         seconds_left = seconds
@@ -30,6 +32,17 @@ class Reindeer:
                     seconds_left -= self.rest_time
 
         return answer
+
+    def advance(self):
+        self.distance += self.speed if self.flying else 0
+        self.time_in_state += 1
+
+        if self.flying and self.time_in_state == self.fly_time:
+            self.flying = False
+            self.time_in_state = 0
+        elif not self.flying and self.time_in_state == self.rest_time:
+            self.flying = True
+            self.time_in_state = 0
 
 
 def parse_line(line: str):
