@@ -41,11 +41,11 @@ def score_cookie(ingredients: List[Ingredient], amounts: List[int]):
 def main(raw_ingredient_lines):
     ingredients = parse_ingredients(raw_ingredient_lines)
     max_score = 0
-    for c in range(101):
-        for d in range(101 - c):
-            for f in range(101 - (c + d)):
-                for t in range(101 - (c + d + f)):
-                    max_score = max(max_score, score_cookie(ingredients, [c, d, f, t]))
+    for amount1 in range(101):
+        for amount2 in range(101 - amount1):
+            for amount3 in range(101 - (amount1 + amount2)):
+                for amount4 in range(101 - (amount1 + amount2 + amount3)):
+                    max_score = max(max_score, score_cookie(ingredients, [amount1, amount2, amount3, amount4]))
     return max_score
 
 
