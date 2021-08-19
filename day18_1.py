@@ -2,6 +2,9 @@ class Grid:
     def __init__(self, data):
         self._grid = data
 
+    def __str__(self):
+        return '\n'.join(self._grid)
+
     def get_neighbors(self, x, y):
         height = len(self._grid)
         width = len(self._grid[0])
