@@ -132,3 +132,5 @@ dmypy.json
 
 .idea
 /node/node_modules
+/data/test19_2_2.txt
+/data/test19_2.txt
